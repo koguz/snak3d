@@ -14,6 +14,7 @@
 Snak3d::Snak3d() {
 	points = 0;
 	sure = 0;
+	p = 0;
 }
 
 int Snak3d::getPoints() {
@@ -27,9 +28,20 @@ void Snak3d::init() {
 }
 
 void Snak3d::draw() {
-    glTranslated(0, 0, -4);
-    glRotatef(20, 1, 0, 0);
-    glutSolidCube(1);	
+	glTranslatef(0, 0, -12);
+	glRotatef(p, 0, 1, 0);
+	glColor3f(0.2, 0.2, 0.3);
+	for(int i=0;i<10;i++) {
+		for(int j=0;j<10;j++) {
+			for(int k=0;k<10;k++) {
+				glPushMatrix();
+				glTranslatef(i-5, j-5, k-5);
+				glutSolidCube(0.7);
+				glPopMatrix();
+			}
+		}
+	}
+	//GLfloat vertices[] = { 1, -1, -1, 1, -1, 1, -1, -1, 1};
 }
 
 
@@ -38,6 +50,6 @@ void Snak3d::collisionDetection() {
 }
 
 void Snak3d::update(double a) {
-
+	p++;
 }
 
